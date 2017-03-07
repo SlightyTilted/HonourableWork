@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<scenario name = "CliRegister">
+
+<!-- This scenario indicates a register/deregistration SIP callflow     -->
+
+<send retrans="500">
+    <![CDATA[
+
+      REGISTER sip:[remote_ip] SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port]
+      To: <sip:[field0]@[remote_ip]>
+      From: <sip:[field0]@[remote_ip]>
+      Contact: <sip:[field0]@[local_ip]:[local_port]>;transport=[transport]
+      Expires: 300
+      Call-ID: [call_id]
+      CSeq: 1 REGISTER
+      Content-Length: 0
+
+    ]]>
+</send>
+
+<recv response = "401" auth = "true">
+</recv>
+
+
+<send>
+      <![CDATA[
+
+        REGISTER sip:[remote_ip] SIP/2.0
+        Via: SIP/2.0/[transport] [local_ip]:[local_port]
+        To: <sip:[field0]@[local_ip]>
+        From: <sip:[field0]@[local_ip]>
+        Contact: <sip:[field0]@[local_ip]:[local_port]>;transport=[transport]
+        CSeq: 2 REGISTER
+        [field1]
+        Expires: 300
+        Call-ID: [call_id]
+        Content-Length: 0
+
+      ]]>
+</send>
+
+<recv response = "200">
+</recv>
+
+<pause milliseconds = "0">
+</pause>
+
+<send>
+        <![CDATA[
+
+          REGISTER sip:[remote_ip] SIP/2.0
+          Via: SIP/2.0/[transport] [local_ip]:[local_port]
+          To: <sip:[field0]@[remote_ip]:[remote_port]>
+          From: <sip:[field0]@[remote_ip]:[remote_port]>
+          Contact: <sip:[field0]@[local_ip]:[local_port]>;transport=[transport]
+          Expires: 0
+          Call-ID: [call_id]
+          CSeq: 2 REGISTER
+          Content-Length: 0
+
+        ]]>
+</send>
+
+<recv response = "401" auth = "true">
+</recv>
+
+
+<send >
+          <![CDATA[
+
+            REGISTER sip:[remote_ip] SIP/2.0
+            Via: SIP/2.0/[transport] [local_ip]:[local_port]
+            To: <sip:[field0]@[remote_ip]:[remote_port]>
+            From: <sip:[field0]@[remote_ip]:[remote_port]>
+            Contact: <sip:[field0]@[local_ip]:[local_port]>;transport=[transport]
+            [field1]
+            Expires: 0
+            Call-ID: [call_id]
+            CSeq: 2 REGISTER
+            Content-Length: 0
+
+          ]]>
+</send>
+
+<recv response = "200">
+</recv>
+
+</scenario>

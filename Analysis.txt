@@ -1,0 +1,52 @@
+This document provides the tests and statistical data that were acquired.
+
+Written By: Kyle Marais
+
+Registration Scenario
+_____________________
+
+Command: ./sipp -sf CliRegister.xml -inf UserDB.csv -r 10 -trace_stat -m 1000 -i 10.0.2.15 -p 5067 10.0.2.15
+-sf; scenario file
+-inf; Injection file
+-r n; -r is the call rate, and n represents any positive integer.
+-trace_stat; show results of call
+-m n; Stop the test when n number of calls have been processed
+-i; local ip
+-p; local port
+10.0.2.15; remote host parameter
+
+In the benchmarking of the registration with the server, the -r parameter was shifted from 50, to 100, 150 and 200.
+The -m parameter was kept static at 1000 calls.
+
+
+Caller Client scenario
+______________________
+
+Command: ./sipp -sf callc1.xml -inf UserDB.csv -r n -trace_stat -m 1000 -i 10.0.2.15 -p 5067 10.0.2.15
+-sf; scenario file
+-inf; Injection file
+-r n; -r is the call rate, and n represents any positive integer.
+-trace_stat; show results of call
+-m n; Stop the test when n number of calls have been processed
+-i; local ip
+-p; local port
+10.0.2.15; remote host parameter
+
+In the benchmarking of the callhandler server scenario, the -r parameter was shifted from 50, to 100, and then 150.
+The m parameter was kept static.
+
+Server/Callhandler scenario
+___________________________
+
+Command: ./sipp -sf calls1.xml -inf UserDB.csv -r n-trace_stat -m 1000 -i 10.0.2.15 -p 5067 10.0.2.15
+-sf; scenario file
+-inf; Injection file
+-r n; -r is the call rate, and n represents any positive integer.
+-trace_stat; show results of call
+-m n; Stop the test when n number of calls have been processed
+-i; local ip
+-p; local port
+10.0.2.15; remote host parameter
+
+In the benchmarking of the call client scenario, the -r parameter was shifted from 50, to 100, and then 150.
+The m parameter was kept static.
